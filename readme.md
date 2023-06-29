@@ -8,7 +8,7 @@ products:
 name: Sample chat app using Azure Cosmos DB for NoSQL and Azure OpenAI
 urlFragment: chat-app
 description: Sample application that implements multiple chat threads using the Azure OpenAI "text-davinci-003" model and Azure Cosmos DB for NoSQL for storage.
-azureDeploy: https://raw.githubusercontent.com/azure-samples/cosmosdb-chatgpt/main/azuredeploy.json
+azureDeploy: https://raw.githubusercontent.com/zxlfqdn/cosmosdb-chatgpt/main/azuredeploy.json
 ---
 
 # Azure Cosmos DB + OpenAI ChatGPT
@@ -60,7 +60,7 @@ Note: You must have access to Azure Open AI service from your subscription befor
 
 All connection information for Azure Cosmos DB and Open AI is zero-touch and injected as environment variables in the Azure App Service instance at deployment time. 
 
-[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure-Samples%2Fcosmosdb-chatgpt%2Fmain%2Fazuredeploy.json)
+[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fzxlfqdn%2Fcosmosdb-chatgpt%2Fmain%2Fazuredeploy.json)
 
 ### Quickstart
 

@@ -61,14 +61,14 @@
       "type": "string",
       "defaultValue": "https://github.com/zxlfqdn/cosmosdb-chatgpt.git",
       "metadata": {
-        "description": "Git repository URL for the chat application. This defaults to the [`azure-samples/cosmosdb-chatgpt`](https://github.com/zxlfqdn/cosmosdb-chatgpt) repository."
+        "description": "Git repository URL for the chat application. This defaults to the [`zxlfqdn/cosmosdb-chatgpt`](https://github.com/zxlfqdn/cosmosdb-chatgpt) repository."
       }
     },
     "appGetRepositoryBranch": {
       "type": "string",
       "defaultValue": "main",
       "metadata": {
-        "description": "Git repository branch for the chat application. This defaults to the [**main** branch of the `azure-samples/cosmosdb-chatgpt`](https://github.com/zxlfqdn/cosmosdb-chatgpt/tree/main) repository."
+        "description": "Git repository branch for the chat application. This defaults to the [**main** branch of the `zxlfqdn/cosmosdb-chatgpt`](https://github.com/zxlfqdn/cosmosdb-chatgpt/tree/main) repository."
       }
     }
   },
