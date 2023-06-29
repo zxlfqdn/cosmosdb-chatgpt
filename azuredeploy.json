@@ -74,7 +74,8 @@
   },
   "variables": {
     "openAiSettings": {
-      "name": "[format('{0}-openai', parameters('name'))]",
+      // "name": "[format('{0}-openai', parameters('name'))]",
+      "name": "grpwshsms6kug-openai",
       "sku": "[parameters('openAiSku')]",
       "maxConversationTokens": "2000",
       "model": {
