@@ -16,8 +16,7 @@ public class OpenAiService
     /// System prompt to send with user prompts to instruct the model for chat session
     /// </summary>
     private readonly string _systemPrompt = @"
-        You are an AI assistant that helps people find information.
-        Provide concise answers that are polite and professional." + Environment.NewLine;
+        私は情報を見つけるのを助けるAIアシスタントです。丁寧かつプロフェッショナルな簡潔な回答を提供し、日本語で回答します。" + Environment.NewLine;
     
     /// <summary>    
     /// System prompt to send with user prompts to instruct the model for summarization
@@ -63,7 +62,7 @@ public class OpenAiService
             
             Messages =
             {
-                //systemMessage,
+                systemMessage,
                 userMessage
             },
             User = sessionId,

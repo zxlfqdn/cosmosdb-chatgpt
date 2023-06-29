@@ -29,7 +29,7 @@ public record Session
         Type = nameof(Session);
         SessionId = this.Id;
         TokensUsed = 0;
-        Name = "New Chat";
+        Name = "新しいチャット";
         Messages = new List<Message>();
     }
 

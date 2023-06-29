@@ -60,9 +60,9 @@
                                         </a>
                                     </div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <span class="badge bg-light me-2 user-select-none">
+                                        @* <span class="badge bg-light me-2 user-select-none">
                                             Tokens Used: @session.TokensUsed
-                                        </span>
+                                        </span> *@
                                         <div class="btn-group" role="group">
                                             <button type="button" class="btn btn-sm btn-link text-light" @onclick="@(e => OpenInput(session.SessionId,session.Name))">
                                                 <i class="bi bi-pencil-fill me-1"></i>
@@ -86,7 +86,7 @@
 
 @if (_deletePopUpOpen)
 {
-    <Confirmation Caption="Delete a Chat"
+    <Confirmation Caption="チャット削除"
         Message="@_popUpText"
         OnClose="@OnConfirmationClose"
         Type="Confirmation.Category.DeleteNot">
@@ -96,7 +96,7 @@
 
 @if (_renamePopUpOpen)
 {
-    <Input Caption="Rename a Chat"
+    <Input Caption="チャット名変更"
         Value="@_popUpText"
         OnClose="@OnInputClose" >
     </Input>
