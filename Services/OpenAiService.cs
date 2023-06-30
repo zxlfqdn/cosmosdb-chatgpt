@@ -16,13 +16,13 @@ public class OpenAiService
     /// System prompt to send with user prompts to instruct the model for chat session
     /// </summary>
     private readonly string _systemPrompt = @"
-        私は情報を見つけるのを助けるAIアシスタントです。丁寧かつプロフェッショナルな簡潔な回答を提供し、日本語で回答します。" + Environment.NewLine;
+        あなたは質問を解決する為のAIアシスタントです。必ず日本語で丁寧、正確と簡潔な回答してください。" + Environment.NewLine;
     
     /// <summary>    
     /// System prompt to send with user prompts to instruct the model for summarization
     /// </summary>
     private readonly string _summarizePrompt = @"
-        Summarize this prompt in one or two words to use as a label in a button on a web page" + Environment.NewLine;
+        ラベルを作る為、トピックを1～2語で要約してください" + Environment.NewLine;
 
     /// <summary>
     /// Creates a new instance of the service.
