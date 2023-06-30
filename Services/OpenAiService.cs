@@ -22,7 +22,7 @@ public class OpenAiService
     /// System prompt to send with user prompts to instruct the model for summarization
     /// </summary>
     private readonly string _summarizePrompt = @"
-        ラベルを作る為、トピックを1～2語で要約してください" + Environment.NewLine;
+        会話内容を1～2語で要約してください" + Environment.NewLine;
 
     /// <summary>
     /// Creates a new instance of the service.
