@@ -58,11 +58,6 @@
                                                 @html
                                             </span>
                                         </a>
-                                    </div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        @* <span class="badge bg-light me-2 user-select-none">
-                                            Tokens Used: @session.TokensUsed
-                                        </span> *@
                                         <div class="btn-group" role="group">
                                             <button type="button" class="btn btn-sm btn-link text-light" @onclick="@(e => OpenInput(session.SessionId,session.Name))">
                                                 <i class="bi bi-pencil-fill me-1"></i>
@@ -72,6 +67,19 @@
                                             </button>
                                         </div>
                                     </div>
+                                    @* <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <span class="badge bg-light me-2 user-select-none">
+                                            Tokens Used: @session.TokensUsed
+                                        </span>
+                                        <div class="btn-group" role="group">
+                                            <button type="button" class="btn btn-sm btn-link text-light" @onclick="@(e => OpenInput(session.SessionId,session.Name))">
+                                                <i class="bi bi-pencil-fill me-1"></i>
+                                            </button>
+                                            <button type="button" class="btn btn-sm btn-link text-light" @onclick="@(e => OpenConfirmation(session.SessionId,session.Name))">
+                                                <i class="bi bi-trash-fill ms-1"></i>
+                                            </button>
+                                        </div>
+                                    </div> *@
                                 </div>
                             </div>
                         }
@@ -153,7 +161,7 @@
     {
         _deletePopUpOpen = true;
         _sessionId = id;
-        _popUpText = $"Do you want to delete the chat \"{title}\"?";
+        _popUpText = $"\"{title}\" このチャットを削除してよろしいですか？";
     }
 
     public void UpdateNavMenuDisplay(string reason = "")

@@ -219,13 +219,13 @@
         CurrentSession = session;
     }
 
-    public async Task Enter(KeyboardEventArgs e)
+    @* public async Task Enter(KeyboardEventArgs e)
     {
         if (e.Code == "Enter" || e.Code == "NumpadEnter")
         {
             await SubmitPromptAsync();
         }
-    }
+    } *@
 
     private async Task SubmitPromptAsync()
     {
