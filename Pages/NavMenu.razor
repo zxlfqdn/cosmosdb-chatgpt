@@ -43,7 +43,7 @@
             <div>
                 <nav class="flex-column">
                     <div class="nav-item py-2 d-grid">
-                        <NavLink style="cursor:pointer" class="btn btn-lg mx-1 btn-outline-secondary d-flex flex-row align-items start" Match="NavLinkMatch.All" @onclick="@(e => NewChat())">
+                        <NavLink style="cursor:pointer" class="btn mx-1 btn-outline-info d-flex flex-row align-items start" Match="NavLinkMatch.All" @onclick="@(e => NewChat())">
                             <i class="bi bi-plus"></i>
                             <span class="flex-fill">
                                 新しいチャット作成
@@ -54,7 +54,7 @@
                         @foreach (var session in ChatSessions)
                         {
                             <div class="col">
-                                <div class="card @(IsActiveSession(session.SessionId) ? "bg-primary text-light" : "bg-primary opacity-50 text-light")">
+                                <div class="card @(IsActiveSession(session.SessionId) ? "bg-dark text-light" : "bg-dark opacity-50 text-light")">
                                     <div class="card-body user-select-none" role="button" @onclick="@(e => LoadChat(session.SessionId,session.Name, session.TokensUsed))">
                                         <a class="card-title text-decoration-none h6">
                                             @if (IsActiveSession(session.SessionId))
@@ -69,6 +69,7 @@
                                                 @html
                                             </span>
                                         </a>
+                                        <div class="d-flex justify-content-end">
                                         <div class="btn-group" role="group">
                                             <button type="button" class="btn btn-sm btn-link text-light" @onclick="@(e => OpenInput(session.SessionId,session.Name))">
                                                 <i class="bi bi-pencil-fill me-1"></i>
@@ -76,6 +77,7 @@
                                             <button type="button" class="btn btn-sm btn-link text-light" @onclick="@(e => OpenConfirmation(session.SessionId,session.Name))">
                                                 <i class="bi bi-trash-fill ms-1"></i>
                                             </button>
+                                        </div>
                                         </div>
                                     </div>
                                     @* <div class="card-footer d-flex align-items-center justify-content-between">
