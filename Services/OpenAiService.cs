@@ -22,7 +22,7 @@ public class OpenAiService
     /// System prompt to send with user prompts to instruct the model for summarization
     /// </summary>
     private readonly string _summarizePrompt = @"
-        以下の文について、長さが8文字以内の短いタイトルに作ってください。タイトルには鉤括弧や句点、コロン、クォーテーションマークなどの符号を必ず含めないこと。作れない場合は文の内のキーワード1個を挙げましょう" + Environment.NewLine;
+        以下の文について、長さが8文字以内の短いタイトルに作ってください。タイトルに鉤括弧や句点、コロン、引用符などの記号は必ず含めないこと。" + Environment.NewLine;
 
     /// <summary>
     /// Creates a new instance of the service.
