@@ -79,12 +79,12 @@
                 <div class="alert alert-primary">
                     <div class="alert-heading">
                         <div class="spinner-border text-primary me-1" role="status">
-                            <span class="visually-hidden">Loading...</span>
+                            <span class="visually-hidden">読み込み中。。。</span>
                         </div>
-                        Loading...
+                        読み込み中。。。
                     </div>
                     <p class="text-nowrap mb-0 fst-italic">
-                        Please wait while your chat loads.
+                        チャットが読み込まれるまでお待ちください
                     </p>
                 </div>
             }
@@ -107,8 +107,10 @@
                     <div class="toast-container position-static w-100 d-flex flex-column align-items-stretch">
                         @foreach (var msg in _messagesInChat)
                         {
-                            <div class="toast fade show w-75 rounded-3 @(msg.Sender == nameof(Participants.Assistant) ? "align-self-end" : "align-self-start")">
-                                <div class="toast-header @(msg.Sender == nameof(Participants.Assistant) ? "bg-dark text-light" : "bg-info text-light")">
+                            <div class="toast fade show w-75 rounded-3 @(msg.Sender == nameof(Participants.Assistant) ? 'align-self-end' : 'align-self-start')" 
+                            style="@(msg.Sender == nameof(Participants.Assistant) ? 'border-color: #000;' : 'border-color: rgb(56, 3, 71);')  border-width: 2px;"
+                            >
+                                <div class="toast-header @(msg.Sender == nameof(Participants.Assistant) ? "bg-black text-light" : "bg-info text-light")">
                                     <style>.bg-info {background-color: rgb(56, 3, 71) !important;}</style>
                                     <i class="bi @(msg.Sender == nameof(Participants.Assistant) ? "bi-robot" : "bi-person") me-1" aria-hidden="true"></i>
                                     <strong class="me-auto text-capitalize">
@@ -124,7 +126,7 @@
                                     </small>
                                 </div>
                                 <div class="toast-body">
-                                    <i class="bi bi-grip-vertical mr-2 text-black-50"></i>
+                                    @* <i class="bi bi-grip-vertical mr-2 text-black-50"></i> *@
                                     @{
                                         var text = msg.Text.Replace("\n", "<br />");
                                         Regex rgx = new Regex("```");
