@@ -5,7 +5,7 @@
 
 <div class="h-100 d-flex flex-column" style="min-width: 275px;">
 
-    <div class="flex-column navbar navbar-dark bg-dark">
+    <div class="flex-column navbar navbar-dark bg-black">
         <div class="container-fluid justify-content-between">
             <div class="flex-fill">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="80"
@@ -58,7 +58,7 @@
                         @foreach (var session in ChatSessions)
                         {
                             <div class="col">
-                                <div class="card @(IsActiveSession(session.SessionId) ? "bg-dark text-light" : "bg-dark opacity-50 text-light")">
+                                <div class="card @(IsActiveSession(session.SessionId) ? "bg-black text-light" : "bg-black opacity-50 text-light")">
                                     <div class="card-body user-select-none" role="button" @onclick="@(e => LoadChat(session.SessionId,session.Name, session.TokensUsed))">
                                         <a class="card-title text-decoration-none h6">
                                             @if (IsActiveSession(session.SessionId))

@@ -8,8 +8,8 @@
 <div class="h-100 mh-100 d-flex flex-column overflow-hidden justify-content-start" style="font-family: 'Meiryo UI';">
     @if (ShowHeader)
     {
-        <div class="navbar navbar-dark bg-dark">
-            <div class="w-100 navbar navbar-dark bg-dark d-flex flex-row px-4 justify-content-between flex-nowrap">
+        <div class="navbar navbar-dark bg-black">
+            <div class="w-100 navbar navbar-dark bg-black d-flex flex-row px-4 justify-content-between flex-nowrap">
                 <div class="d-flex flex-row justify-content-start">
 
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100" 
@@ -107,7 +107,7 @@
                     <div class="toast-container position-static w-100 d-flex flex-column align-items-stretch">
                         @foreach (var msg in _messagesInChat)
                         {
-                            <div class="toast fade show w-75 rounded-3 @(msg.Sender == nameof(Participants.Assistant) ? "align-self-end" : "align-self-start")">
+                            <div class="toast fade show w-75 rounded-3 @(msg.Sender == nameof(Participants.Assistant) ? "align-self-end" : "align-self-start")" style="border-width: 2px; @(msg.Sender == nameof(Participants.Assistant) ? "border-color: #000" : "border-color: rgb(56, 3, 71)")">
                                 <div class="toast-header @(msg.Sender == nameof(Participants.Assistant) ? "bg-black text-light" : "bg-info text-light")">
                                     <style>.bg-info {background-color: rgb(56, 3, 71) !important;}</style>
                                     <i class="bi @(msg.Sender == nameof(Participants.Assistant) ? "bi-robot" : "bi-person") me-1" aria-hidden="true"></i>
