@@ -3,7 +3,7 @@
 @inject ChatService chatService
 
 
-<div class="h-100 d-flex flex-column" style="min-width: 275px; font-family: 'Meiryo UI', sans-serif;">
+<div class="h-100 d-flex flex-column" style="min-width: 275px;">
 
     <div class="flex-column navbar navbar-dark bg-dark">
         <div class="container-fluid justify-content-between">
@@ -40,7 +40,7 @@
     <div class="flex-grow-1 flex-column justify-content-center overflow-y-auto overflow-x-hidden">
         @if (_loadingComplete == true)
         {
-            <div>
+            <div style="font-family: 'Meiryo UI', sans-serif;">
                 <nav class="flex-column">
                     <div class="nav-item py-2 d-grid">
                         <NavLink style="cursor:pointer" class="btn mx-1 btn-outline-info d-flex flex-row align-items start" Match="NavLinkMatch.All" @onclick="@(e => NewChat())">
