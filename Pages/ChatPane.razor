@@ -5,7 +5,7 @@
 @inject ChatService chatService
 @inject IJSRuntime JSRuntime
 
-<div class="h-100 mh-100 d-flex flex-column overflow-hidden justify-content-start">
+<div class="h-100 mh-100 d-flex flex-column overflow-hidden justify-content-start" style="font-family: 'Meiryo UI';">
     @if (ShowHeader)
     {
         <div class="navbar navbar-dark bg-dark">
@@ -44,7 +44,7 @@
             </div>
         </div>
     } 
-    <h6 class="px-4 display-6 text-secondary p-2">@GetChatSessionName()</h6>
+    <h6 class="px-4 display-6 text-secondary p-2" style="font-weight: bold;">@GetChatSessionName()</h6>
     <div class="px-4 pb-4 pt-2 flex-grow-1 overflow-y-auto overflow-x-hidden align-items-stretch" id="MessagesInChatdiv">
         @if (CurrentSession is null)
         {
