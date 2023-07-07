@@ -107,9 +107,7 @@
                     <div class="toast-container position-static w-100 d-flex flex-column align-items-stretch">
                         @foreach (var msg in _messagesInChat)
                         {
-                            <div class="toast fade show w-75 rounded-3 @(msg.Sender == nameof(Participants.Assistant) ? 'align-self-end' : 'align-self-start')" 
-                            style="@(msg.Sender == nameof(Participants.Assistant) ? 'border-color: #000;' : 'border-color: rgb(56, 3, 71);')  border-width: 2px;"
-                            >
+                            <div class="toast fade show w-75 rounded-3 @(msg.Sender == nameof(Participants.Assistant) ? "align-self-end" : "align-self-start")">
                                 <div class="toast-header @(msg.Sender == nameof(Participants.Assistant) ? "bg-black text-light" : "bg-info text-light")">
                                     <style>.bg-info {background-color: rgb(56, 3, 71) !important;}</style>
                                     <i class="bi @(msg.Sender == nameof(Participants.Assistant) ? "bi-robot" : "bi-person") me-1" aria-hidden="true"></i>
