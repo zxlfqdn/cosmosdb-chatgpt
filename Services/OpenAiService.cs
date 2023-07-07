@@ -22,7 +22,7 @@ public class OpenAiService
     /// System prompt to send with user prompts to instruct the model for summarization
     /// </summary>
     private readonly string _summarizePrompt = @"
-        この文を長さが６文字以内のタイトルに作ってください" + Environment.NewLine;
+        この文を長さが６文字以内のタイトルに作ってください。'「」。'などの符号を使用しないでください。" + Environment.NewLine;
 
     /// <summary>
     /// Creates a new instance of the service.
