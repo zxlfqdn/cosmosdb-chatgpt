@@ -21,11 +21,32 @@
         "description": "Location where all resources will be deployed. This value defaults to the **South Central US** region."
       }
     },
-    "name": {
+    "openAIName": {
       "type": "string",
       "defaultValue": "[uniqueString(resourceGroup().id)]",
       "metadata": {
-        "description": "Unique name for the chat application.  The name is required to be unique as it will be used as a prefix for the names of these resources:\r\n- Azure Cosmos DB\r\n- Azure App Service\r\n- Azure OpenAI\r\nThe name defaults to a unique string generated from the resource group identifier.\r\n"
+        "description": "OpenAIの名: 設定値-openai になります。設定値のデフォルト値は選択されたリソース グループのIDより生成する唯一のランダムな文字列になります。"
+      }
+    },
+    "cosmosDbName": {
+      "type": "string",
+      "defaultValue": "[uniqueString(resourceGroup().id)]",
+      "metadata": {
+        "description": "CosmosDBの名: 設定値-cosmos-nosql になります。設定値のデフォルト値は選択されたリソース グループのIDより生成する唯一のランダムな文字列になります。"
+      }
+    },
+    "appServicePlanName": {
+      "type": "string",
+      "defaultValue": "[uniqueString(resourceGroup().id)]",
+      "metadata": {
+        "description": "AppServiceプランの名: 設定値-web-plan になります。設定値のデフォルト値は選択されたリソース グループのIDより生成する唯一のランダムな文字列になります。"
+      }
+    },
+    "appServiceWebName": {
+      "type": "string",
+      "defaultValue": "[uniqueString(resourceGroup().id)]",
+      "metadata": {
+        "description": "webアプリケーションの名: 設定値-web になります。設定値のデフォルト値は選択されたリソース グループのIDより生成する唯一のランダムな文字列になります。"
       }
     },
     "cosmosDbEnableFreeTier": {
@@ -74,7 +95,7 @@
   },
   "variables": {
     "openAiSettings": {
-      "name": "[format('{0}-openai', parameters('name'))]",
+      "name": "[format('{0}-openai', parameters('openAIName'))]",
       // "name": "grpwshsms6kug-openai",
       "sku": "[parameters('openAiSku')]",
       "maxConversationTokens": "2000",
@@ -87,7 +108,7 @@
       }
     },
     "cosmosDbSettings": {
-      "name": "[format('{0}-cosmos-nosql', parameters('name'))]",
+      "name": "[format('{0}-cosmos-nosql', parameters('cosmosDbName'))]",
       "enableFreeTier": "[parameters('cosmosDbEnableFreeTier')]",
       "database": {
         "name": "chatdatabase"
@@ -99,10 +120,10 @@
     },
     "appServiceSettings": {
       "plan": {
-        "name": "[format('{0}-web-plan', parameters('name'))]"
+        "name": "[format('{0}-web-plan', parameters('appServicePlanName'))]"
       },
       "web": {
-        "name": "[format('{0}-web', parameters('name'))]",
+        "name": "[format('{0}-web', parameters('appServiceWebName'))]",
         "git": {
           "repo": "[parameters('appGitRepository')]",
           "branch": "[parameters('appGetRepositoryBranch')]"
