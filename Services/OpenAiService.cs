@@ -22,7 +22,7 @@ public class OpenAiService
     /// System prompt to send with user prompts to instruct the model for summarization
     /// </summary>
     private readonly string _summarizePrompt = @"
-        以下の文について、長さが１０文字以内の短いタイトルを作ってください。タイトルに鉤括弧や句点、コロン、引用符などの記号は使わないようにしてください。" + Environment.NewLine;
+        请用1个或2个词总结对话的内容以用作这段对话的标题。必ず日本語で" + Environment.NewLine;
 
     /// <summary>
     /// Creates a new instance of the service.
@@ -104,9 +104,9 @@ public class OpenAiService
                 userMessage
             },
             User = sessionId,
-            MaxTokens = 200,
+            MaxTokens = 20,
             Temperature = 0.0f,
-            NucleusSamplingFactor = 1.0f,
+            NucleusSamplingFactor = 0.0f,
             FrequencyPenalty = 0,
             PresencePenalty = 0
         };
