@@ -25,28 +25,28 @@
       "type": "string",
       "defaultValue": "",
       "metadata": {
-        "description": "OpenAIの名: 設定値-openai になります。設定値のデフォルト値は選択されたリソース グループのIDより生成する唯一のランダムな文字列になります。"
+        "description": "OpenAIの名、空である場合、選択されたリソース グループのIDより生成する唯一のランダムな文字列と設定されます。"
       }
     },
     "cosmosDbName": {
       "type": "string",
       "defaultValue": "",
       "metadata": {
-        "description": "CosmosDBの名: 設定値-cosmos-nosql になります。設定値のデフォルト値は選択されたリソース グループのIDより生成する唯一のランダムな文字列になります。"
+        "description": "CosmosDBの名、空である場合、選択されたリソース グループのIDより生成する唯一のランダムな文字列と設定されます。"
       }
     },
     "appServicePlanName": {
       "type": "string",
       "defaultValue": "",
       "metadata": {
-        "description": "AppServiceプランの名: 設定値-web-plan になります。設定値のデフォルト値は選択されたリソース グループのIDより生成する唯一のランダムな文字列になります。"
+        "description": "AppServiceプランの名、空である場合、選択されたリソース グループのIDより生成する唯一のランダムな文字列と設定されます。"
       }
     },
     "appServiceWebName": {
       "type": "string",
       "defaultValue": "",
       "metadata": {
-        "description": "webアプリケーションの名: 設定値-web になります。設定値のデフォルト値は選択されたリソース グループのIDより生成する唯一のランダムな文字列になります。"
+        "description": "webアプリケーションの名、空である場合、選択されたリソース グループのIDより生成する唯一のランダムな文字列と設定されます。"
       }
     },
     "cosmosDbEnableFreeTier": {
