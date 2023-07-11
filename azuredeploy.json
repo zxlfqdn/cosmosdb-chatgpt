@@ -23,28 +23,28 @@
     },
     "openAIName": {
       "type": "string",
-      "defaultValue": "[uniqueString(resourceGroup().id)]",
+      "defaultValue": "",
       "metadata": {
         "description": "OpenAIの名: 設定値-openai になります。設定値のデフォルト値は選択されたリソース グループのIDより生成する唯一のランダムな文字列になります。"
       }
     },
     "cosmosDbName": {
       "type": "string",
-      "defaultValue": "[uniqueString(resourceGroup().id)]",
+      "defaultValue": "",
       "metadata": {
         "description": "CosmosDBの名: 設定値-cosmos-nosql になります。設定値のデフォルト値は選択されたリソース グループのIDより生成する唯一のランダムな文字列になります。"
       }
     },
     "appServicePlanName": {
       "type": "string",
-      "defaultValue": "[uniqueString(resourceGroup().id)]",
+      "defaultValue": "",
       "metadata": {
         "description": "AppServiceプランの名: 設定値-web-plan になります。設定値のデフォルト値は選択されたリソース グループのIDより生成する唯一のランダムな文字列になります。"
       }
     },
     "appServiceWebName": {
       "type": "string",
-      "defaultValue": "[uniqueString(resourceGroup().id)]",
+      "defaultValue": "",
       "metadata": {
         "description": "webアプリケーションの名: 設定値-web になります。設定値のデフォルト値は選択されたリソース グループのIDより生成する唯一のランダムな文字列になります。"
       }
@@ -95,8 +95,9 @@
   },
   "variables": {
     "openAiSettings": {
-      "name": "[format('{0}-openai', parameters('openAIName'))]",
+      //"name": "[parameters('openAIName')]",
       // "name": "grpwshsms6kug-openai",
+      "name": "[if(empty(parameters('openAIName')), uniqueString(resourceGroup().id), parameters('openAIName'))]",
       "sku": "[parameters('openAiSku')]",
       "maxConversationTokens": "2000",
       "model": {
@@ -108,7 +109,7 @@
       }
     },
     "cosmosDbSettings": {
-      "name": "[format('{0}-cosmos-nosql', parameters('cosmosDbName'))]",
+      "name": "[if(empty(parameters('cosmosDbName')), uniqueString(resourceGroup().id), parameters('cosmosDbName'))]",
       "enableFreeTier": "[parameters('cosmosDbEnableFreeTier')]",
       "database": {
         "name": "chatdatabase"
@@ -120,10 +121,10 @@
     },
     "appServiceSettings": {
       "plan": {
-        "name": "[format('{0}-web-plan', parameters('appServicePlanName'))]"
+        "name": "[if(empty(parameters('appServicePlanName')), uniqueString(resourceGroup().id), parameters('appServicePlanName'))]"
       },
       "web": {
-        "name": "[format('{0}-web', parameters('appServiceWebName'))]",
+        "name": "[if(empty(parameters('appServiceWebName')), uniqueString(resourceGroup().id), parameters('appServiceWebName'))]",
         "git": {
           "repo": "[parameters('appGitRepository')]",
           "branch": "[parameters('appGetRepositoryBranch')]"
