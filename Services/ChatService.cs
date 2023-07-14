@@ -9,13 +9,16 @@ public class ChatService
     /// All data is cached in the _sessions List object.
     /// </summary>
     private static List<Session> _sessions = new();
+    private readonly IHttpContextAccessor _httpContextAccessor;
+
 
     private readonly CosmosDbService _cosmosDbService;
     private readonly OpenAiService _openAiService;
     private readonly int _maxConversationTokens;
 
-    public ChatService(CosmosDbService cosmosDbService, OpenAiService openAiService, string maxConversationTokens)
+    public ChatService(IHttpContextAccessor httpContextAccessor, CosmosDbService cosmosDbService, OpenAiService openAiService, string maxConversationTokens)
     {
+        _httpContextAccessor = httpContextAccessor;
         _cosmosDbService = cosmosDbService;
         _openAiService = openAiService;
         
@@ -27,7 +30,7 @@ public class ChatService
     /// </summary>
     public async Task<List<Session>> GetAllChatSessionsAsync()
     {
-        return _sessions = await _cosmosDbService.GetSessionsAsync();
+        return _sessions = await _cosmosDbService.GetSessionsAsync("12345");
     }
 
     /// <summary>
@@ -63,12 +66,25 @@ public class ChatService
         return chatMessages;
     }
 
+    public static string GetLoginUserId(IHeaderDictionary headers, string defaultStr = "NoUserId"){
+        string identifier = "X-MS-CLIENT-PRINCIPAL-NAME"; 
+        string headerValues = headers[identifier];
+        if(string.IsNullOrEmpty(headerValues) == true){
+            return defaultStr;
+        }
+        else{
+            return headerValues;
+        }
+    }
+
     /// <summary>
     /// User creates a new Chat Session.
     /// </summary>
     public async Task CreateNewChatSessionAsync()
     {
         Session session = new();
+
+        session.UserId = GetLoginUserId(_httpContextAccessor.HttpContext.Request.Headers);
 
         _sessions.Add(session);
 

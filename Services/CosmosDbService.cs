@@ -78,10 +78,10 @@ public class CosmosDbService
     /// Gets a list of all current chat sessions.
     /// </summary>
     /// <returns>List of distinct chat session items.</returns>
-    public async Task<List<Session>> GetSessionsAsync()
+    public async Task<List<Session>> GetSessionsAsync(string userId)
     {
         QueryDefinition query = new QueryDefinition("SELECT DISTINCT * FROM c WHERE c.type = @type AND c.userId = @userId")
-            .WithParameter("@userId", "12345")
+            .WithParameter("@userId", userId)
             .WithParameter("@type", nameof(Session));
 
         FeedIterator<Session> response = _container.GetItemQueryIterator<Session>(query);
