@@ -9,17 +9,17 @@ public class ChatService
     /// All data is cached in the _sessions List object.
     /// </summary>
     private static List<Session> _sessions = new();
-    private readonly IHttpContextAccessor _httpContextAccessor;
+    //private readonly IHttpContextAccessor _httpContextAccessor;
 
 
     private readonly CosmosDbService _cosmosDbService;
     private readonly OpenAiService _openAiService;
     private readonly int _maxConversationTokens;
 
-    public ChatService(IHttpContextAccessor httpContextAccessor, CosmosDbService cosmosDbService, OpenAiService openAiService, string maxConversationTokens)
-    //public ChatService(CosmosDbService cosmosDbService, OpenAiService openAiService, string maxConversationTokens)
+    //public ChatService(IHttpContextAccessor httpContextAccessor, CosmosDbService cosmosDbService, OpenAiService openAiService, string maxConversationTokens)
+    public ChatService(CosmosDbService cosmosDbService, OpenAiService openAiService, string maxConversationTokens)
     {
-        _httpContextAccessor = httpContextAccessor;
+        //_httpContextAccessor = httpContextAccessor;
         _cosmosDbService = cosmosDbService;
         _openAiService = openAiService;
 
