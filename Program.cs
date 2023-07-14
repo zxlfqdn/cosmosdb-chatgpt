@@ -83,7 +83,10 @@ static class ProgramExtensions
             {
                 var cosmosDbService = provider.GetRequiredService<CosmosDbService>();
                 var openAiService = provider.GetRequiredService<OpenAiService>();
+                var httpContextAccessor = provider.GetRequiredService<IHttpContextAccessor>();
+
                 return new ChatService(
+                    httpContextAccessor: httpContextAccessor,
                     openAiService: openAiService,
                     cosmosDbService: cosmosDbService,
                     maxConversationTokens: openAiOptions.Value?.MaxConversationTokens ?? String.Empty
