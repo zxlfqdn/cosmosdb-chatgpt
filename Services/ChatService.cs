@@ -19,7 +19,7 @@ public class ChatService
     public ChatService(IHttpContextAccessor httpContextAccessor, CosmosDbService cosmosDbService, OpenAiService openAiService, string maxConversationTokens)
     //public ChatService(CosmosDbService cosmosDbService, OpenAiService openAiService, string maxConversationTokens)
     {
-        //_httpContextAccessor = httpContextAccessor;
+        _httpContextAccessor = httpContextAccessor;
         _cosmosDbService = cosmosDbService;
         _openAiService = openAiService;
 
