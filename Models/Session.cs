@@ -20,6 +20,8 @@ public record Session
 
     public string Name { get; set; }
 
+    public string UserId { get; set; }
+
     [JsonIgnore]
     public List<Message> Messages { get; set; }
 
@@ -30,6 +32,7 @@ public record Session
         SessionId = this.Id;
         TokensUsed = 0;
         Name = "新しいチャット";
+        UserId = "12345";
         Messages = new List<Message>();
     }
 
