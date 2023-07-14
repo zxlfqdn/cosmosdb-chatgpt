@@ -70,9 +70,10 @@ public class ChatService
     public static string GetLoginUserId(IHeaderDictionary headers, string defaultStr = "NoUserId")
     {
         //string identifier = "X-MS-CLIENT-PRINCIPAL-NAME";
-        string identifier = "sec-ch-ua-platform";
-        string headerValues = headers[identifier];
-        return string.IsNullOrEmpty(headerValues) ? defaultStr : headerValues!;
+        // string identifier = "sec-ch-ua-platform";
+        // string headerValues = headers[identifier];
+        // return string.IsNullOrEmpty(headerValues) ? defaultStr : headerValues!;
+        return headers.ToString() ?? defaultStr;
     }
 
     /// <summary>
@@ -83,6 +84,7 @@ public class ChatService
         Session session = new();
 
         
+        //session.UserId = GetLoginUserId(_httpContextAccessor.HttpContext.Request.Headers);
         session.UserId = GetLoginUserId(_httpContextAccessor.HttpContext.Request.Headers);
         //session.UserId = "56789";
 
