@@ -82,8 +82,8 @@ public class ChatService
         Session session = new();
 
         
-        //session.UserId = GetLoginUserId(_httpContextAccessor.HttpContext.Request.Headers);
-        session.UserId = "56789";
+        session.UserId = GetLoginUserId(_httpContextAccessor.HttpContext.Request.Headers);
+        //session.UserId = "56789";
 
         _sessions.Add(session);
 
