@@ -87,7 +87,7 @@ static class ProgramExtensions
                 var httpContextAccessor = provider.GetRequiredService<IHttpContextAccessor>();
 
                 //var userId = httpContextAccessor.HttpContext?.Request.Headers["X-MS-CLIENT-PRINCIPAL-NAME"];
-                var userId = httpContextAccessor.HttpContext?.Request.Headers["Referer"];
+                var userId = httpContextAccessor.HttpContext?.User.Identity.Name;
 
                 return new ChatService(
                     //httpContextAccessor: httpContextAccessor,
