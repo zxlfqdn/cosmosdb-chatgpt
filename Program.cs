@@ -7,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.RegisterConfiguration();
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
+builder.Services.AddHttpContextAccessor();
 builder.Services.RegisterServices();
 
 var app = builder.Build();
@@ -21,8 +22,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 
-app.UseAuthentication(); // 添加认证中间件
-app.UseAuthorization(); // 添加授权中间件
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");

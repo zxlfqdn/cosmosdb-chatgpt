@@ -10,14 +10,14 @@ public class ChatService
     /// </summary>
     private static List<Session> _sessions = new();
 
-    public string UserId { get; }
+    private readonly string _userId;
     private readonly CosmosDbService _cosmosDbService;
     private readonly OpenAiService _openAiService;
     private readonly int _maxConversationTokens;
 
     public ChatService(CosmosDbService cosmosDbService, OpenAiService openAiService, string maxConversationTokens, string userId)
     {
-        UserId = userId;
+        _userId = userId;
         
         _cosmosDbService = cosmosDbService;
         _openAiService = openAiService;
@@ -30,7 +30,7 @@ public class ChatService
     /// </summary>
     public async Task<List<Session>> GetAllChatSessionsAsync()
     {
-        return _sessions = await _cosmosDbService.GetSessionsAsync(UserId);
+        return _sessions = await _cosmosDbService.GetSessionsAsync(_userId);
     }
 
     /// <summary>
@@ -82,7 +82,7 @@ public class ChatService
     {
         Session session = new();
         
-        session.UserId = UserId;
+        session.UserId = _userId;
 
         _sessions.Add(session);
 
