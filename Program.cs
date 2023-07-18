@@ -1,5 +1,6 @@
 using Cosmos.Chat.GPT.Options;
 using Cosmos.Chat.GPT.Services;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
