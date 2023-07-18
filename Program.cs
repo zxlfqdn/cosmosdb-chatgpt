@@ -21,6 +21,9 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 
+app.UseAuthentication(); // 添加认证中间件
+app.UseAuthorization(); // 添加授权中间件
+
 app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");
 
