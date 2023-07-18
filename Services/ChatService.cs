@@ -9,17 +9,19 @@ public class ChatService
     /// All data is cached in the _sessions List object.
     /// </summary>
     private static List<Session> _sessions = new();
-    private readonly IHttpContextAccessor _httpContextAccessor;
+    //private readonly IHttpContextAccessor _httpContextAccessor;
 
-
+    private readonly string _userId;
     private readonly CosmosDbService _cosmosDbService;
     private readonly OpenAiService _openAiService;
     private readonly int _maxConversationTokens;
 
-    public ChatService(IHttpContextAccessor httpContextAccessor, CosmosDbService cosmosDbService, OpenAiService openAiService, string maxConversationTokens)
-    //public ChatService(CosmosDbService cosmosDbService, OpenAiService openAiService, string maxConversationTokens)
+    //public ChatService(IHttpContextAccessor httpContextAccessor, CosmosDbService cosmosDbService, OpenAiService openAiService, string maxConversationTokens)
+    public ChatService(CosmosDbService cosmosDbService, OpenAiService openAiService, string maxConversationTokens, string userId)
     {
-        _httpContextAccessor = httpContextAccessor;
+        //_httpContextAccessor = httpContextAccessor;
+        _userId = userId;
+        
         _cosmosDbService = cosmosDbService;
         _openAiService = openAiService;
 
@@ -31,7 +33,7 @@ public class ChatService
     /// </summary>
     public async Task<List<Session>> GetAllChatSessionsAsync()
     {
-        return _sessions = await _cosmosDbService.GetSessionsAsync("12345");
+        return _sessions = await _cosmosDbService.GetSessionsAsync(_userId);
     }
 
     /// <summary>
@@ -69,11 +71,11 @@ public class ChatService
 
     public static string GetLoginUserId(IHeaderDictionary headers, string defaultStr = "NoUserId")
     {
-        //string identifier = "X-MS-CLIENT-PRINCIPAL-NAME";
+        string identifier = "X-MS-CLIENT-PRINCIPAL-NAME";
         // string identifier = "sec-ch-ua-platform";
-        // string headerValues = headers[identifier];
-        // return string.IsNullOrEmpty(headerValues) ? defaultStr : headerValues!;
-        return headers.ToString() ?? defaultStr;
+        string headerValues = headers[identifier];
+        return string.IsNullOrEmpty(headerValues) ? defaultStr : headerValues!;
+        //return headers.ToString() ?? defaultStr;
     }
 
     /// <summary>
@@ -85,8 +87,8 @@ public class ChatService
 
         
         //session.UserId = GetLoginUserId(_httpContextAccessor.HttpContext.Request.Headers);
-        session.UserId = GetLoginUserId(_httpContextAccessor.HttpContext.Request.Headers);
-        //session.UserId = "56789";
+        //session.UserId = GetLoginUserId(_httpContextAccessor.HttpContext.Request.Headers);
+        session.UserId = _userId;
 
         _sessions.Add(session);
 
