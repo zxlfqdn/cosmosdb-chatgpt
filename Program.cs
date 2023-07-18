@@ -1,6 +1,7 @@
 using Cosmos.Chat.GPT.Options;
 using Cosmos.Chat.GPT.Services;
 using Microsoft.Extensions.Options;
+using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,7 +9,6 @@ builder.RegisterConfiguration();
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.RegisterServices();
-builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
 
@@ -40,6 +40,7 @@ static class ProgramExtensions
 
     public static void RegisterServices(this IServiceCollection services)
     {
+        services.AddHttpContextAccessor();
         services.AddSingleton<CosmosDbService, CosmosDbService>((provider) =>
         {
             var cosmosDbOptions = provider.GetRequiredService<IOptions<CosmosDb>>();
@@ -84,13 +85,13 @@ static class ProgramExtensions
             {
                 var cosmosDbService = provider.GetRequiredService<CosmosDbService>();
                 var openAiService = provider.GetRequiredService<OpenAiService>();
-                var httpContextAccessor = provider.GetRequiredService<IHttpContextAccessor>();
 
-                //var userId = httpContextAccessor.HttpContext?.Request.Headers["X-MS-CLIENT-PRINCIPAL-NAME"];
-                var userId = httpContextAccessor.HttpContext?.User.Identity.Name;
+                var httpContextAccessor = provider.GetRequiredService<IHttpContextAccessor>();
+                var user = httpContextAccessor.HttpContext?.User;
+                //var userId = user.FindFirst(ClaimTypes.Upn)?.Value;
+                var userId = user.ToString();
 
                 return new ChatService(
-                    //httpContextAccessor: httpContextAccessor,
                     openAiService: openAiService,
                     cosmosDbService: cosmosDbService,
                     maxConversationTokens: openAiOptions.Value?.MaxConversationTokens ?? String.Empty,
