@@ -98,14 +98,14 @@ static class ProgramExtensions
                 }
                 else
                 {
-                    var header = http.Request.Headers;
-                    if (header is null)
+                    var identity = http.User.Identity;
+                    if (identity is null)
                     {
-                        userId = "noHeader";
+                        userId = "noIdentity";
                     }
                     else
                     {
-                        userId = header["x-ms-client-principal-name"];
+                        userId = identity.Name;
                         if (userId is null){
                             userId = "noXMS";
                         }
