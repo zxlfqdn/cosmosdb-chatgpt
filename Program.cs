@@ -84,8 +84,9 @@ static class ProgramExtensions
             {
                 var cosmosDbService = provider.GetRequiredService<CosmosDbService>();
                 var openAiService = provider.GetRequiredService<OpenAiService>();
+                var httpContextAccessor = provider.GetRequiredService<IHttpContextAccessor>();
 
-                var userId = "12345";
+                var userId = httpContextAccessor.HttpContext?.Request.Headers["X-MS-CLIENT-PRINCIPAL-NAME"];
                 //var httpContextAccessor = provider.GetRequiredService<IHttpContextAccessor>();
 
                 return new ChatService(
