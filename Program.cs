@@ -1,7 +1,6 @@
 using Cosmos.Chat.GPT.Options;
 using Cosmos.Chat.GPT.Services;
 using Microsoft.Extensions.Options;
-using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -87,8 +86,7 @@ static class ProgramExtensions
                 var openAiService = provider.GetRequiredService<OpenAiService>();
 
                 var httpContextAccessor = provider.GetRequiredService<IHttpContextAccessor>();
-                var user = httpContextAccessor.HttpContext?.User;
-                var userId = user.FindFirst(ClaimTypes.Upn)?.Value;
+                var userId = httpContextAccessor.HttpContext.User.Identity.Name;
 
                 return new ChatService(
                     openAiService: openAiService,
