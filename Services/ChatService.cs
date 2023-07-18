@@ -69,14 +69,14 @@ public class ChatService
         return chatMessages;
     }
 
-    public static string GetLoginUserId(IHeaderDictionary headers, string defaultStr = "NoUserId")
-    {
-        string identifier = "X-MS-CLIENT-PRINCIPAL-NAME";
-        // string identifier = "sec-ch-ua-platform";
-        string headerValues = headers[identifier];
-        return string.IsNullOrEmpty(headerValues) ? defaultStr : headerValues!;
-        //return headers.ToString() ?? defaultStr;
-    }
+    // public static string GetLoginUserId(IHeaderDictionary headers, string defaultStr = "NoUserId")
+    // {
+    //     string identifier = "X-MS-CLIENT-PRINCIPAL-NAME";
+    //     // string identifier = "sec-ch-ua-platform";
+    //     string headerValues = headers[identifier];
+    //     return string.IsNullOrEmpty(headerValues) ? defaultStr : headerValues!;
+    //     //return headers.ToString() ?? defaultStr;
+    // }
 
     /// <summary>
     /// User creates a new Chat Session.

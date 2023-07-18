@@ -88,8 +88,7 @@ static class ProgramExtensions
 
                 var httpContextAccessor = provider.GetRequiredService<IHttpContextAccessor>();
                 var user = httpContextAccessor.HttpContext?.User;
-                //var userId = user.FindFirst(ClaimTypes.Upn)?.Value;
-                var userId = user.ToString();
+                var userId = user.FindFirst(ClaimTypes.Upn)?.Value;
 
                 return new ChatService(
                     openAiService: openAiService,
