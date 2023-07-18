@@ -86,8 +86,8 @@ static class ProgramExtensions
                 var openAiService = provider.GetRequiredService<OpenAiService>();
                 var httpContextAccessor = provider.GetRequiredService<IHttpContextAccessor>();
 
-                var userId = httpContextAccessor.HttpContext?.Request.Headers["X-MS-CLIENT-PRINCIPAL-NAME"];
-                //var httpContextAccessor = provider.GetRequiredService<IHttpContextAccessor>();
+                //var userId = httpContextAccessor.HttpContext?.Request.Headers["X-MS-CLIENT-PRINCIPAL-NAME"];
+                var userId = httpContextAccessor.HttpContext?.Request.Headers["Referer"];
 
                 return new ChatService(
                     //httpContextAccessor: httpContextAccessor,
