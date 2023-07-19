@@ -159,7 +159,7 @@
     private string userId { get; set; } = "12345";
     private IEnumerable<Claim> claims = Enumerable.Empty<Claim>();
 
-    protected override async Task OnInitializedAsync()
+    private async Task getUserId()
     {
         
         var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
@@ -200,6 +200,7 @@
             {
                 this.StateHasChanged();
                 await LoadCurrentChatAsync();
+                await getUserId();
             });
         };
     }
