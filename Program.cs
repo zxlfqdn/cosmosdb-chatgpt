@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.RegisterConfiguration();
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-//builder.Services.AddHttpContextAccessor();
+builder.Services.AddHttpContextAccessor();
 builder.Services.RegisterServices();
 
 var app = builder.Build();
