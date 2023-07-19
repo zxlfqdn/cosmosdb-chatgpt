@@ -10,6 +10,7 @@ builder.Services.AddServerSideBlazor();
 //builder.Services.AddHttpContextAccessor();
 builder.Services.RegisterServices();
 builder.Services.AddAuthentication();
+builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
@@ -24,7 +25,7 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthentication();
-//app.UseAuthorization();
+app.UseAuthorization();
 
 app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");
@@ -45,7 +46,7 @@ static class ProgramExtensions
     public static void RegisterServices(this IServiceCollection services)
     {
         services.AddAuthentication();
-        //services.AddAuthorization();
+        services.AddAuthorization();
         services.AddSingleton<CosmosDbService, CosmosDbService>((provider) =>
         {
             var cosmosDbOptions = provider.GetRequiredService<IOptions<CosmosDb>>();
