@@ -147,9 +147,6 @@
     [Parameter]
     public EventCallback OnThemeUpdated { get; set; }
 
-    [Inject]
-    private NavigationManager NavigationManager { get; set; }
-
     private string? _sessionId;
     private string? _popUpText;
     private bool _deletePopUpOpen = false;
@@ -160,8 +157,31 @@
 
     private static event EventHandler<string>? OnNavMenuChanged;
 
-    private string userId = "12345";
+    private string userId { get; set; } = "12345";
     private IEnumerable<Claim> claims = Enumerable.Empty<Claim>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+
+        if (user is null)
+        {
+            userId = "noUser";
+        }
+        else
+        {
+            if (user.Identity is null)
+            {
+                userId = "noIdentity";
+            }
+            else
+            {
+                userId = user.Identity.IsAuthenticated.ToString();
+            }
+        }
+    }
 
     async private Task ToggleNavMenu()
     {
@@ -183,29 +203,6 @@
                 await LoadCurrentChatAsync();
             });
         };
-
-        var uri = new Uri(NavigationManager.Uri);
-        var headers = uri.GetComponents(UriComponents.Fragment, UriFormat.Unescaped)
-            .Split('&')
-            .Select(s => s.Split('='))
-            .ToDictionary(arr => arr[0], arr => arr[1]);
-
-        if (headers is null)
-        {
-            userId = "noHeaders";
-        }
-        else
-        {
-            headers.TryGetValue("X-MS-CLIENT-PRINCIPAL-NAME", out var userName);
-            if (userName is null)
-            {
-                userId = "noName";
-            }
-            else
-            {
-                userId = userName;
-            }
-        }
     }
 
     private void OpenConfirmation(string id, string title)
