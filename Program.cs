@@ -43,7 +43,6 @@ static class ProgramExtensions
 
     public static void RegisterServices(this IServiceCollection services)
     {
-        //services.AddHttpContextAccessor();
         services.AddSingleton<CosmosDbService, CosmosDbService>((provider) =>
         {
             var cosmosDbOptions = provider.GetRequiredService<IOptions<CosmosDb>>();
@@ -88,32 +87,6 @@ static class ProgramExtensions
             {
                 var cosmosDbService = provider.GetRequiredService<CosmosDbService>();
                 var openAiService = provider.GetRequiredService<OpenAiService>();
-
-                //var httpContextAccessor = provider.GetRequiredService<IHttpContextAccessor>();
-
-                //var userId = "";
-                //var http = httpContextAccessor.HttpContext;
-                //var identity = (ClaimsIdentity)User.Identity;
-                // if (http is null)
-                // {
-                //     userId = "noHttp";
-                // }
-                // else
-                // {
-                //     var identity = http.User.Identity;
-                //     if (identity is null)
-                //     {
-                //         userId = "noIdentity";
-                //     }
-                //     else
-                //     {
-                //         userId = identity.Name;
-                //         if (userId is null){
-                //             userId = "noXMS";
-                //         }
-                //     }
-                // }
-                //= httpContextAccessor.HttpContext?.Request.Headers["x-ms-client-principal-name"];
 
                 return new ChatService(
                     openAiService: openAiService,
