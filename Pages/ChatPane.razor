@@ -4,6 +4,7 @@
 @using System.Text.RegularExpressions;
 @inject ChatService chatService
 @inject IJSRuntime JSRuntime
+@inject AuthenticationStateProvider AuthenticationStateProvider
 
 <div class="h-100 mh-100 d-flex flex-column overflow-hidden justify-content-start" style="font-family: 'Meiryo UI';">
     @if (ShowHeader)
@@ -183,6 +184,8 @@
 
     private string? UserPromptSet { get; set; }
 
+    private string userId { get; set; } = "12345";
+
     private List<Message>? _messagesInChat;
     private static event EventHandler<Session>? _onMessagePosted;
     private bool _loadingComplete;
@@ -228,6 +231,29 @@
         }
 
         _loadingComplete = true;
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+
+        if (user is null)
+        {
+            userId = "noUser";
+        }
+        else
+        {
+            if (user.Identity is null)
+            {
+                userId = "noIdentity";
+            }
+            else
+            {
+                userId = user.Identity.IsAuthenticated.ToString();
+            }
+        }
     }
 
     public void ChangeCurrentChatSession(Session session)
