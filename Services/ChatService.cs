@@ -9,28 +9,23 @@ public class ChatService
     /// All data is cached in the _sessions List object.
     /// </summary>
     private static List<Session> _sessions = new();
-
-    private readonly string _userId;
     private readonly CosmosDbService _cosmosDbService;
     private readonly OpenAiService _openAiService;
     private readonly int _maxConversationTokens;
 
-    public ChatService(CosmosDbService cosmosDbService, OpenAiService openAiService, string maxConversationTokens, string userId)
+    public ChatService(CosmosDbService cosmosDbService, OpenAiService openAiService, string maxConversationTokens)
     {
-        _userId = userId;
-        
         _cosmosDbService = cosmosDbService;
         _openAiService = openAiService;
-
         _maxConversationTokens = Int32.TryParse(maxConversationTokens, out _maxConversationTokens) ? _maxConversationTokens : 4000;
     }
 
     /// <summary>
     /// Returns list of chat session ids and names for left-hand nav to bind to (display Name and ChatSessionId as hidden)
     /// </summary>
-    public async Task<List<Session>> GetAllChatSessionsAsync()
+    public async Task<List<Session>> GetAllChatSessionsAsync(string userId)
     {
-        return _sessions = await _cosmosDbService.GetSessionsAsync(_userId);
+        return _sessions = await _cosmosDbService.GetSessionsAsync(userId);
     }
 
     /// <summary>
@@ -78,11 +73,11 @@ public class ChatService
     /// <summary>
     /// User creates a new Chat Session.
     /// </summary>
-    public async Task CreateNewChatSessionAsync()
+    public async Task CreateNewChatSessionAsync(string userId)
     {
         Session session = new();
         
-        session.UserId = _userId;
+        session.UserId = userId;
 
         _sessions.Add(session);
 

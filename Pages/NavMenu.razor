@@ -270,7 +270,7 @@
 
     private async Task NewChat()
     {
-        await chatService.CreateNewChatSessionAsync();
+        await chatService.CreateNewChatSessionAsync("12345");
 
         if (ChatSessions.Count == 1)
         {
@@ -288,7 +288,7 @@
 
         _loadingComplete = false;
 
-        ChatSessions = await chatService.GetAllChatSessionsAsync();
+        ChatSessions = await chatService.GetAllChatSessionsAsync("12345");
         if (CurrentSession is not null && ChatSessions is not null & ChatSessions?.Count > 0)
         {
             var match = ChatSessions?.FirstOrDefault();
