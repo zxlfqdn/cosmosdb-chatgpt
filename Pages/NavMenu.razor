@@ -40,50 +40,50 @@
     <div class="flex-grow-1 flex-column justify-content-center overflow-y-auto overflow-x-hidden">
         @if (_loadingComplete == true)
         {
-            <div style="font-family: 'Meiryo UI';">
-                <nav class="flex-column">
-                    <div class="nav-item py-2 d-grid">
-                        <NavLink style="cursor:pointer" class="btn mx-1 btn-outline-info d-flex flex-row align-items start" Match="NavLinkMatch.All" @onclick="@(e => NewChat())">
-                            <style>
-                                .btn-outline-info {color: rgb(56, 3, 71); border-color: rgb(56, 3, 71); border-width: 2px; font-weight: bold;}
-                                .btn-outline-info:hover {background-color: rgb(56, 3, 71); border-color: rgb(56, 3, 71); color: white;}
-                            </style>
-                            <i class="bi bi-plus" style="font-weight: bold;"></i>
-                            <span class="flex-fill">
-                                新しいチャット作成
-                            </span>
-                        </NavLink>
-                    </div>
-                    <div class="row row-cols-1 g-2 px-2 d-flex flex-column align-items-start">
+                                <div style="font-family: 'Meiryo UI';">
+                                    <nav class="flex-column">
+                                        <div class="nav-item py-2 d-grid">
+                                            <NavLink style="cursor:pointer" class="btn mx-1 btn-outline-info d-flex flex-row align-items start" Match="NavLinkMatch.All" @onclick="@(e => NewChat())">
+                                                <style>
+                                                    .btn-outline-info {color: rgb(56, 3, 71); border-color: rgb(56, 3, 71); border-width: 2px; font-weight: bold;}
+                                                    .btn-outline-info:hover {background-color: rgb(56, 3, 71); border-color: rgb(56, 3, 71); color: white;}
+                                                </style>
+                                                <i class="bi bi-plus" style="font-weight: bold;"></i>
+                                                <span class="flex-fill">
+                                                    新しいチャット作成
+                                                </span>
+                                            </NavLink>
+                                        </div>
+                                        <div class="row row-cols-1 g-2 px-2 d-flex flex-column align-items-start">
                         @foreach (var session in ChatSessions)
                         {
-                            <div class="col">
-                                <div class="card @(IsActiveSession(session.SessionId) ? "bg-black text-light" : "bg-black opacity-50 text-light")">
-                                    <div class="card-body user-select-none" role="button" @onclick="@(e => LoadChat(session.SessionId,session.Name, session.TokensUsed))">
-                                        <a class="card-title text-decoration-none h6">
+                                                                    <div class="col">
+                                                                        <div class="card @(IsActiveSession(session.SessionId) ? "bg-black text-light" : "bg-black opacity-50 text-light")">
+                                                                            <div class="card-body user-select-none" role="button" @onclick="@(e => LoadChat(session.SessionId,session.Name, session.TokensUsed))">
+                                                                                <a class="card-title text-decoration-none h6">
                                             @* @if (IsActiveSession(session.SessionId))
                                             {
                                                 <i class="bi bi-chat-right-dots-fill me-2"></i>
                                             } *@
-                                            <span title="@session.Name" class="ms-1">                                                
+                                                                                    <span title="@session.Name" class="ms-1">                                                
                                                 @{
                                                     string substring = SafeSubstring(session.Name, 20);
                                                     MarkupString html = new MarkupString(substring);
                                                 }
                                                 @html
-                                            </span>
-                                        </a>
-                                        <div class="d-flex justify-content-end">
-                                        <div class="btn-group" role="group">
-                                            <button type="button" class="btn btn-sm btn-link text-light" @onclick="@(e => OpenInput(session.SessionId,session.Name))">
-                                                <i class="bi bi-pencil-fill me-1"></i>
-                                            </button>
-                                            <button type="button" class="btn btn-sm btn-link text-light" @onclick="@(e => OpenConfirmation(session.SessionId,session.Name))">
-                                                <i class="bi bi-trash-fill ms-1"></i>
-                                            </button>
-                                        </div>
-                                        </div>
-                                    </div>
+                                                                                    </span>
+                                                                                </a>
+                                                                                <div class="d-flex justify-content-end">
+                                                                                <div class="btn-group" role="group">
+                                                                                    <button type="button" class="btn btn-sm btn-link text-light" @onclick="@(e => OpenInput(session.SessionId,session.Name))">
+                                                                                        <i class="bi bi-pencil-fill me-1"></i>
+                                                                                    </button>
+                                                                                    <button type="button" class="btn btn-sm btn-link text-light" @onclick="@(e => OpenConfirmation(session.SessionId,session.Name))">
+                                                                                        <i class="bi bi-trash-fill ms-1"></i>
+                                                                                    </button>
+                                                                                </div>
+                                                                                </div>
+                                                                            </div>
                                     @* <div class="card-footer d-flex align-items-center justify-content-between">
                                         <span class="badge bg-light me-2 user-select-none">
                                             Tokens Used: @session.TokensUsed
@@ -97,12 +97,12 @@
                                             </button>
                                         </div>
                                     </div> *@
-                                </div>
-                            </div>
+                                                                        </div>
+                                                                    </div>
                         }
-                    </div>
-                </nav>
-            </div>
+                                        </div>
+                                    </nav>
+                                </div>
         }
     </div>
 </div>
@@ -111,22 +111,23 @@
 
 @if (_deletePopUpOpen)
 {
-    <Confirmation Caption="チャット削除"
-        Message="@_popUpText"
-        OnClose="@OnConfirmationClose"
-        Type="Confirmation.Category.DeleteNot">
-    </Confirmation>
+                        <Confirmation Caption="チャット削除"
+                            Message="@_popUpText"
+                            OnClose="@OnConfirmationClose"
+                            Type="Confirmation.Category.DeleteNot">
+                        </Confirmation>
 }
 
 
 @if (_renamePopUpOpen)
 {
-    <Input Caption="チャット名変更"
-        Value="@_popUpText"
-        OnClose="@OnInputClose" >
-    </Input>
+                        <Input Caption="チャット名変更"
+                            Value="@_popUpText"
+                            OnClose="@OnInputClose" >
+                        </Input>
 }
 
+@inject Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider AuthenticationStateProvider
 
 @code {
 
@@ -151,6 +152,37 @@
     public Session? CurrentSession;
 
     private static event EventHandler<string>? OnNavMenuChanged;
+
+    private string userId = "12345";
+
+    protected override async Task OnInitializedAsync()
+    {
+        var authenticationState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var user = authenticationState.User;
+        if (user is null)
+        {
+            userId = "noUser";
+        }
+        else
+        {
+            if (user.Identity is null)
+            {
+                userId = "noIdentity";
+            }
+            else
+            {
+                if (user.Identity.Name is null)
+                {
+                    userId = "noName";
+                }
+                else
+                {
+                    userId = user.Identity.Name;
+                }
+            }
+        }
+
+    }
 
     async private Task ToggleNavMenu()
     {
@@ -191,7 +223,7 @@
 
     private async Task OnConfirmationClose(bool isOk)
     {
-        bool updateCurrentChat=false;
+        bool updateCurrentChat = false;
 
         if (CurrentSession is not null & _sessionId == CurrentSession?.SessionId)
             updateCurrentChat = true;
@@ -238,7 +270,7 @@
 
     private async Task OnInputClose(string newName)
     {
-        if (newName!="")
+        if (newName != "")
         {
             bool updateCurrentChat = false;
 
@@ -270,7 +302,7 @@
 
     private async Task NewChat()
     {
-        await chatService.CreateNewChatSessionAsync("12345");
+        await chatService.CreateNewChatSessionAsync(userId);
 
         if (ChatSessions.Count == 1)
         {
@@ -288,7 +320,7 @@
 
         _loadingComplete = false;
 
-        ChatSessions = await chatService.GetAllChatSessionsAsync("12345");
+        ChatSessions = await chatService.GetAllChatSessionsAsync(userId);
         if (CurrentSession is not null && ChatSessions is not null & ChatSessions?.Count > 0)
         {
             var match = ChatSessions?.FirstOrDefault();
@@ -319,7 +351,7 @@
             CurrentSession.Name = string.Empty;
 
             if (ChatSessions is not null & ChatSessions?.Count > 0)
-            {   
+            {
                 var match = ChatSessions?.FirstOrDefault();
                 if (match is not null)
                 {
@@ -327,7 +359,7 @@
                     CurrentSession.Name = match.Name;
                     CurrentSession.TokensUsed = match.TokensUsed;
                 }
-            }            
+            }
         }
 
         await OnChatClicked.InvokeAsync(CurrentSession);
@@ -340,7 +372,7 @@
         if (ChatSessions is null) return 0;
 
         if (CurrentSession is null)
-           CurrentSession = new Session();
+            CurrentSession = new Session();
 
         CurrentSession.SessionId = _sessionId;
         CurrentSession.Name = sessionName;
