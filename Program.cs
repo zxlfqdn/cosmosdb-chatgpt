@@ -1,6 +1,8 @@
 using Cosmos.Chat.GPT.Options;
 using Cosmos.Chat.GPT.Services;
 using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Authentication.AzureAD.UI;
+using Microsoft.Identity.Web;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -45,7 +47,17 @@ static class ProgramExtensions
 
     public static void RegisterServices(this IServiceCollection services)
     {
-        //services.AddAuthentication();
+        IConfiguration configuration = new ConfigurationBuilder()
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+            .AddEnvironmentVariables()
+            .Build();
+
+        services.AddSingleton<IConfiguration>(configuration);
+
+        services.AddAuthentication(AzureADDefaults.AuthenticationScheme)
+            .AddMicrosoftIdentityWebApp(options => configuration.Bind("AzureAd", options));
+
         services.AddSingleton<CosmosDbService, CosmosDbService>((provider) =>
         {
             var cosmosDbOptions = provider.GetRequiredService<IOptions<CosmosDb>>();
