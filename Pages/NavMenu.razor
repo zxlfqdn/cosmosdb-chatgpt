@@ -165,20 +165,14 @@
         var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
         var user = authState.User;
 
-        if (user is null)
+        if (user.Identity is not null && user.Identity.IsAuthenticated)
         {
-            userId = "noUser";
+            claims = user.Claims;
+            userId = user.FindFirst(c => c.Type == ClaimTypes.Upn)?.Value;
         }
         else
         {
-            if (user.Identity is null)
-            {
-                userId = "noIdentity";
-            }
-            else
-            {
-                userId = user.Identity.Name;
-            }
+            userId = "GUEST";
         }
     }
 
