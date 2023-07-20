@@ -2,13 +2,15 @@
 
 <PageTitle>ChatGPT for Azure OpenAI</PageTitle>
 <main class="h-100 d-flex flex-row justify-content-start">
-    @if (!IsNavMenuCollapsed)
+    @* @if (!IsNavMenuCollapsed)
     {
         <NavMenu @ref="@NavMenu" OnChatClicked="LoadChatEventHandlerAsync" OnNavBarVisibilityUpdated="UpdateNavBarVisibility" />
     }
     <section class="flex-grow-1">
         <ChatPane @ref="@ChatPane" CurrentSession="@CurrentSession" OnChatUpdated="ForceRefreshAsync" OnNavBarVisibilityUpdated="UpdateNavBarVisibility" ShowHeader="@IsNavMenuCollapsed" />
-    </section>
+    </section> *@
+
+    <ClaimsPrincipalData @ref="@ClaimsPrincipalData"/>
 </main>
 
 @code {
@@ -19,6 +21,7 @@
     private Session? CurrentSession;
     private ChatPane? ChatPane = default;
     private NavMenu? NavMenu = default;
+    private ClaimsPrincipalData? ClaimsPrincipalData = default;
     private bool IsNavMenuCollapsed { get; set; }
 
     private void UpdateNavBarVisibility()
@@ -30,6 +33,7 @@
     {
         NavMenu = new NavMenu();
         ChatPane = new ChatPane();
+        ClaimsPrincipalData = new ClaimsPrincipalData();
     }
 
     public async void LoadChatEventHandlerAsync(Session session)
