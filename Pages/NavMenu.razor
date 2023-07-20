@@ -167,8 +167,9 @@
 
         if (user.Identity is not null && user.Identity.IsAuthenticated)
         {
-            claims = user.Claims;
-            userId = user.FindFirst(c => c.Type == ClaimTypes.Upn)?.Value;
+            //claims = user.Claims;
+            userId = user.Identity.Name;
+            //userId = user.FindFirst(c => c.Type == ClaimTypes.Upn)?.Value;
         }
         else
         {
