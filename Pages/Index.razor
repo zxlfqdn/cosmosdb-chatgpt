@@ -9,8 +9,6 @@
     <section class="flex-grow-1">
         <ChatPane @ref="@ChatPane" CurrentSession="@CurrentSession" OnChatUpdated="ForceRefreshAsync" OnNavBarVisibilityUpdated="UpdateNavBarVisibility" ShowHeader="@IsNavMenuCollapsed" />
     </section>
-
-    @* <ClaimsPrincipalData @ref="@ClaimsPrincipalData"/> *@
 </main>
 
 @code {
