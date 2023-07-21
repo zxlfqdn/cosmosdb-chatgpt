@@ -80,7 +80,7 @@ public class CosmosDbService
     /// <returns>List of distinct chat session items.</returns>
     public async Task<List<Session>> GetSessionsAsync(string userId)
     {
-        QueryDefinition query = new QueryDefinition("SELECT DISTINCT * FROM c WHERE c.type = @type AND c.userId = @userId")
+        QueryDefinition query = new QueryDefinition("SELECT DISTINCT * FROM c WHERE c.type = @type AND c.userId = @userId ORDER BY c._ts DESC")
             .WithParameter("@userId", userId)
             .WithParameter("@type", nameof(Session));
 
