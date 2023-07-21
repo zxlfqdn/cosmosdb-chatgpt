@@ -79,7 +79,8 @@ public class ChatService
         
         session.UserId = userId;
 
-        _sessions.Add(session);
+        //_sessions.Add(session);
+        _sessions.Insert(0, session);
 
         await _cosmosDbService.InsertSessionAsync(session);
 
