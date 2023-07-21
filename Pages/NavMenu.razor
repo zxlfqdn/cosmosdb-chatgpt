@@ -297,7 +297,7 @@
     {
         await chatService.CreateNewChatSessionAsync(userId);
 
-        if (ChatSessions.Count == 1)
+        if (ChatSessions.Count > 0)
         {
             CurrentSession = ChatSessions[0] with { };
             await LoadCurrentChatAsync();
