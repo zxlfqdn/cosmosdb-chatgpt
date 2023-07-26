@@ -15,7 +15,8 @@
       "allowedValues": [
         "South Central US",
         "East US",
-        "France Central"
+        "France Central",
+        "Japan East"
       ],
       "metadata": {
         "description": "Location where all resources will be deployed. This value defaults to the **South Central US** region."
