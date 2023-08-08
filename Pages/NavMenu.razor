@@ -156,24 +156,16 @@
 
     private static event EventHandler<string>? OnNavMenuChanged;
 
-    private string userId { get; set; } = "12345";
-    private IEnumerable<Claim> claims = Enumerable.Empty<Claim>();
+    public string userId { get; set; } = "GUEST";
 
     private async Task getUserId()
     {
-
         var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
         var user = authState.User;
 
         if (user.Identity is not null && user.Identity.IsAuthenticated)
         {
-            //claims = user.Claims;
             userId = user.Identity.Name;
-            //userId = user.FindFirst(c => c.Type == ClaimTypes.Upn)?.Value;
-        }
-        else
-        {
-            userId = "GUEST";
         }
     }
 
