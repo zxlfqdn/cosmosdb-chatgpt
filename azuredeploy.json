@@ -103,7 +103,7 @@
       "maxConversationTokens": "2000",
       "model": {
         "name": "gpt-35-turbo",
-        "version": "0613",
+        "version": "0301",
         "deployment": {
           "name": "chatmodel"
         }
