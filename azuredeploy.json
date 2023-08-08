@@ -99,11 +99,15 @@
       //"name": "[parameters('openAIName')]",
       // "name": "grpwshsms6kug-openai",
       "name": "[if(empty(parameters('openAIName')), uniqueString(resourceGroup().id), parameters('openAIName'))]",
-      "sku": "[parameters('openAiSku')]",
+      //"sku": "[parameters('openAiSku')]",
+      "sku": {
+        "name": "Standard",
+        "capacity": 120
+      },
       "maxConversationTokens": "2000",
       "model": {
         "name": "gpt-35-turbo",
-        "version": "0301",
+        "version": "0613",
         "deployment": {
           "name": "chatmodel"
         }
