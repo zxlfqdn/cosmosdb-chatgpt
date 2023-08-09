@@ -29,7 +29,7 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.UseSession();
+// app.UseSession();
 
 app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");
@@ -60,11 +60,11 @@ static class ProgramExtensions
         services.AddAuthentication(AzureADDefaults.AuthenticationScheme)
             .AddMicrosoftIdentityWebApp(options => configuration.Bind("AzureAd", options));
 
-        services.AddSession(options =>
-        {
-            options.Cookie.IsEssential = true;
-            options.IdleTimeout = TimeSpan.FromMinutes(20);
-        });
+        // services.AddSession(options =>
+        // {
+        //     options.Cookie.IsEssential = true;
+        //     options.IdleTimeout = TimeSpan.FromMinutes(20);
+        // });
 
         services.AddSingleton<CosmosDbService, CosmosDbService>((provider) =>
         {
