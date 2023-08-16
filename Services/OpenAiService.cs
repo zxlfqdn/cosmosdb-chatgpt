@@ -78,10 +78,8 @@ public class OpenAiService
 
         return (
             response: completions.Choices[0].Message.Content,
-            //promptTokens: completions.Usage.PromptTokens,
-            promptTokens: 1,
-            //responseTokens: completions.Usage.CompletionTokens
-            responseTokens: 1
+            promptTokens: completions.Usage.PromptTokens,
+            responseTokens: completions.Usage.CompletionTokens
         );
     }
 

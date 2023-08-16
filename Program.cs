@@ -29,6 +29,8 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
+app.Services.CreateScope();
+
 app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");
 
