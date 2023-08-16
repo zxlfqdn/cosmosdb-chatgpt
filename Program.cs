@@ -58,7 +58,7 @@ static class ProgramExtensions
         services.AddAuthentication(AzureADDefaults.AuthenticationScheme)
             .AddMicrosoftIdentityWebApp(options => configuration.Bind("AzureAd", options));
 
-        services.AddScoped<CosmosDbService, CosmosDbService>((provider) =>
+        services.AddSingleton<CosmosDbService, CosmosDbService>((provider) =>
         {
             var cosmosDbOptions = provider.GetRequiredService<IOptions<CosmosDb>>();
             if (cosmosDbOptions is null)
@@ -75,7 +75,7 @@ static class ProgramExtensions
                 );
             }
         });
-        services.AddScoped<OpenAiService, OpenAiService>((provider) =>
+        services.AddSingleton<OpenAiService, OpenAiService>((provider) =>
         {
             var openAiOptions = provider.GetRequiredService<IOptions<OpenAi>>();
             if (openAiOptions is null)
