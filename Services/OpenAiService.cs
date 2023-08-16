@@ -59,7 +59,6 @@ public class OpenAiService
         
         ChatCompletionsOptions options = new()
         {
-            
             Messages =
             {
                 systemMessage,
@@ -75,13 +74,14 @@ public class OpenAiService
 
         Response<ChatCompletions> completionsResponse = await _client.GetChatCompletionsAsync(_modelName, options);
 
-
         ChatCompletions completions = completionsResponse.Value;
 
         return (
             response: completions.Choices[0].Message.Content,
-            promptTokens: completions.Usage.PromptTokens,
-            responseTokens: completions.Usage.CompletionTokens
+            //promptTokens: completions.Usage.PromptTokens,
+            promptTokens: 1,
+            //responseTokens: completions.Usage.CompletionTokens
+            responseTokens: 1
         );
     }
 

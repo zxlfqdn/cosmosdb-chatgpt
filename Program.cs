@@ -52,13 +52,13 @@ static class ProgramExtensions
             .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
             .AddEnvironmentVariables()
             .Build();
-
+        
         services.AddSingleton<IConfiguration>(configuration);
 
         services.AddAuthentication(AzureADDefaults.AuthenticationScheme)
             .AddMicrosoftIdentityWebApp(options => configuration.Bind("AzureAd", options));
 
-        services.AddSingleton<CosmosDbService, CosmosDbService>((provider) =>
+        services.AddScoped<CosmosDbService, CosmosDbService>((provider) =>
         {
             var cosmosDbOptions = provider.GetRequiredService<IOptions<CosmosDb>>();
             if (cosmosDbOptions is null)
@@ -75,7 +75,7 @@ static class ProgramExtensions
                 );
             }
         });
-        services.AddSingleton<OpenAiService, OpenAiService>((provider) =>
+        services.AddScoped<OpenAiService, OpenAiService>((provider) =>
         {
             var openAiOptions = provider.GetRequiredService<IOptions<OpenAi>>();
             if (openAiOptions is null)
@@ -91,7 +91,7 @@ static class ProgramExtensions
                 );
             }
         });
-        services.AddSingleton<ChatService>((provider) =>
+        services.AddScoped<ChatService>((provider) =>
         {
             var openAiOptions = provider.GetRequiredService<IOptions<OpenAi>>();
             if (openAiOptions is null)
