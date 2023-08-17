@@ -153,7 +153,8 @@
 
     public Session? CurrentSession;
 
-    private static event EventHandler<string>? OnNavMenuChanged;
+    //private static event EventHandler<string>? OnNavMenuChanged;
+    private event EventHandler<string>? OnNavMenuChanged;
 
     public string userId { get; set; } = "GUEST";
 
