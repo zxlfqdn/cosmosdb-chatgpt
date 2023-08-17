@@ -103,7 +103,7 @@
       "maxConversationTokens": "2000",
       "model": {
         "name": "gpt-35-turbo",
-        "version": "0301",
+        "version": "0613",
         "deployment": {
           "name": "chatmodel"
         }
@@ -225,21 +225,21 @@
     },
     {
       "type": "Microsoft.CognitiveServices/accounts/deployments",
-      //"apiVersion": "2023-05-01",
-      "apiVersion": "2022-12-01",
+      "apiVersion": "2023-05-01",
+      //"apiVersion": "2022-12-01",
       "name": "[format('{0}/{1}', variables('openAiSettings').name, variables('openAiSettings').model.deployment.name)]",
-      // "sku": {
-      //   "name": "Standard",
-      //   "capacity": 120
-      // },
+      "sku": {
+        "name": "Standard",
+        "capacity": 120
+      },
       "properties": {
         "model": {
           "format": "OpenAI",
           "name": "[variables('openAiSettings').model.name]",
           "version": "[variables('openAiSettings').model.version]"
-        },
-        "scaleSettings": {
-          "scaleType": "Standard"
+        // },
+        // "scaleSettings": {
+        //   "scaleType": "Standard"
         }
       },
       "dependsOn": [
