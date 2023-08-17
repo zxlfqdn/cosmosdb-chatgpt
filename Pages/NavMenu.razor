@@ -197,11 +197,11 @@
         _popUpText = $"\"{title}\" このチャットを削除してよろしいですか？";
     }
 
-    public void UpdateNavMenuDisplay(string userId = "GUEST", string reason = "")
+    public void UpdateNavMenuDisplay(string reason = "")
     {
         if (OnNavMenuChanged is not null)
         {
-            OnNavMenuChanged.Invoke(userId, reason);
+            OnNavMenuChanged.Invoke(null, reason);
         }
     }
 
@@ -219,7 +219,7 @@
 
             _deletePopUpOpen = false;
 
-            UpdateNavMenuDisplay(userId, "Delete");
+            UpdateNavMenuDisplay("Delete");
 
             if (!updateCurrentChat)
                 return;
@@ -267,7 +267,7 @@
 
             _renamePopUpOpen = false;
 
-            UpdateNavMenuDisplay(userId, "Rename");
+            UpdateNavMenuDisplay("Rename");
 
             if (!updateCurrentChat)
             {
@@ -294,7 +294,7 @@
             await LoadCurrentChatAsync();
         }
 
-        UpdateNavMenuDisplay(userId, "Add");
+        UpdateNavMenuDisplay("Add");
     }
 
     protected override async Task OnParametersSetAsync()

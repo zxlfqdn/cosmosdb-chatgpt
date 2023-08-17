@@ -29,8 +29,6 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.Services.CreateScope();
-
 app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");
 
@@ -60,7 +58,7 @@ static class ProgramExtensions
         services.AddAuthentication(AzureADDefaults.AuthenticationScheme)
             .AddMicrosoftIdentityWebApp(options => configuration.Bind("AzureAd", options));
 
-        services.AddSingleton<CosmosDbService, CosmosDbService>((provider) =>
+        services.AddScoped<CosmosDbService, CosmosDbService>((provider) =>
         {
             var cosmosDbOptions = provider.GetRequiredService<IOptions<CosmosDb>>();
             if (cosmosDbOptions is null)
@@ -77,7 +75,7 @@ static class ProgramExtensions
                 );
             }
         });
-        services.AddSingleton<OpenAiService, OpenAiService>((provider) =>
+        services.AddScoped<OpenAiService, OpenAiService>((provider) =>
         {
             var openAiOptions = provider.GetRequiredService<IOptions<OpenAi>>();
             if (openAiOptions is null)
