@@ -53,34 +53,45 @@ public class OpenAiService
     /// <returns>Response from the OpenAI model along with tokens for the prompt and response.</returns>
     public async Task<(string response, int promptTokens, int responseTokens)> GetChatCompletionAsync(string sessionId, string userPrompt)
     {
-        
-        ChatMessage systemMessage = new(ChatRole.System, _systemPrompt);
-        ChatMessage userMessage = new(ChatRole.User, userPrompt);
-        
-        ChatCompletionsOptions options = new()
-        {
-            Messages =
+        try{
+            ChatMessage systemMessage = new(ChatRole.System, _systemPrompt);
+            ChatMessage userMessage = new(ChatRole.User, userPrompt);
+            
+            ChatCompletionsOptions options = new()
             {
-                systemMessage,
-                userMessage
-            },
-            User = sessionId,
-            MaxTokens = 4000,
-            Temperature = 0.3f,
-            NucleusSamplingFactor = 0.5f,
-            FrequencyPenalty = 0,
-            PresencePenalty = 0
-        };
+                Messages =
+                {
+                    systemMessage,
+                    userMessage
+                },
+                User = sessionId,
+                MaxTokens = 4000,
+                Temperature = 0.3f,
+                NucleusSamplingFactor = 0.5f,
+                FrequencyPenalty = 0,
+                PresencePenalty = 0
+            };
 
-        Response<ChatCompletions> completionsResponse = await _client.GetChatCompletionsAsync(_modelName, options);
+            Response<ChatCompletions> completionsResponse = await _client.GetChatCompletionsAsync(_modelName, options);
 
-        ChatCompletions completions = completionsResponse.Value;
+            ChatCompletions completions = completionsResponse.Value;
 
-        return (
-            response: completions.Choices[0].Message.Content,
-            promptTokens: completions.Usage.PromptTokens,
-            responseTokens: completions.Usage.CompletionTokens
-        );
+            return (
+                response: completions.Choices[0].Message.Content,
+                promptTokens: completions.Usage.PromptTokens,
+                responseTokens: completions.Usage.CompletionTokens
+            );
+        }
+        catch (Exception ex)
+        {
+            // Return an error response with all values set to 0 and the error message
+            return (
+                response: "Error: " + ex.Message,
+                promptTokens: 0,
+                responseTokens: 0
+            );
+        }
+            
     }
 
     /// <summary>
