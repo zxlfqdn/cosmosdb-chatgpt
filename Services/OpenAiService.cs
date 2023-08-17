@@ -65,7 +65,7 @@ public class OpenAiService
                     userMessage
                 },
                 User = sessionId,
-                MaxTokens = 4000,
+                MaxTokens = 3000,
                 Temperature = 0.3f,
                 NucleusSamplingFactor = 0.5f,
                 FrequencyPenalty = 0,
